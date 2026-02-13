@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Google Map Location</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+    }
+
+    header {
+      background: #4285F4;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .map-container {
+      width: 100%;
+      height: 500px;
+      margin: 20px auto;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    footer {
+      background: #4285F4;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Our Location</h1>
+    <p>Find us on Google Maps</p>
+  </header>
+
+<h2>Find Your Location</h2>
+
+  <div class="search-box">
+    <input type="text" id="location" placeholder="Enter location">
+    <button onclick="findLocation()">Search</button>
+  </div>
+
+  <div class="map">
+    <iframe 
+      id="mapFrame"
+      src="https://www.google.com/maps?q=India&output=embed"
+      loading="lazy">
+    </iframe>
+  </div>
+
+  <script>
+    function findLocation() {
+      const location = document.getElementById("location").value;
+      if (location === "") {
+        alert("Please enter a location");
+        return;
+      }
+      const mapUrl = "https://www.google.com/maps?q=" + encodeURIComponent(location) + "&output=embed";
+      document.getElementById("mapFrame").src = mapUrl;
+    }
+  </script>
+  
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Map UI Replica</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e6f2e6;
+}
+
+/* Top search bar */
+.header {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%;
+    background: white;
+    border-radius: 30px;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+
+.header input {
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 16px;
+}
+
+.header .icon {
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+/* Category buttons */
+.categories {
+    position: fixed;
+    top: 70px;
+    left: 10px;
+    display: flex;
+    gap: 10px;
+    z-index: 9;
+}
+
+.category {
+    background: white;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 14px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+/* Map placeholder */
+.map {
+    height: 100vh;
+    background: linear-gradient(#dff5df, #cceccc);
+}
+
+/* Location pins */
+.pin {
+    position: absolute;
+    background: white;
+    padding: 6px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+
+.pin.one { top: 220px; left: 120px; }
+.pin.two { top: 320px; left: 200px; }
+.pin.three { top: 420px; left: 100px; }
+
+/* Bottom navigation */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    box-shadow: 0 -2px 6px rgba(0,0,0,0.2);
+}
+
+.bottom-nav div {
+    text-align: center;
+    font-size: 12px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Search Bar -->
+<div class="header">
+    <input type="text" placeholder="Search here">
+    <div class="icon">🎤</div>
+    <div class="icon">S</div>
+</div>
+
+<!-- Categories -->
+<div class="categories">
+    <div class="category">🍽 Restaurants</div>
+    <div class="category">⛽ Petrol</div>
+    <div class="category">🏨 Hotels</div>
+    <div class="category">📍 Attractions</div>
+</div>
+
+<!-- Map -->
+<div class="map">
+    <div class="pin one">Mahalaxmi Stores</div>
+    <div class="pin two">Omkar Goat Farm</div>
+    <div class="pin three">Kajarguttu Forest</div>
+</div>
+
+<!-- Bottom Navigation -->
+<div class="bottom-nav">
+    <div>📍<br>Explore</div>
+    <div>🚗<br>Go</div>
+    <div>🔖<br>Saved</div>
+    <div>➕<br>Contribute</div>
+    <div>🔔<br>Updates</div>
+</div>
+
+
+</body>
+</html>
