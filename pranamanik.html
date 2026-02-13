@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Google Map Location</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+    }
+
+    header {
+      background: #4285F4;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .map-container {
+      width: 100%;
+      height: 500px;
+      margin: 20px auto;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    footer {
+      background: #4285F4;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Our Location</h1>
+    <p>Find us on Google Maps</p>
+  </header>
+
+<h2>Find Your Location</h2>
+
+  <div class="search-box">
+    <input type="text" id="location" placeholder="Enter location">
+    <button onclick="findLocation()">Search</button>
+  </div>
+
+  <div class="map">
+    <iframe 
+      id="mapFrame"
+      src="https://www.google.com/maps?q=India&output=embed"
+      loading="lazy">
+    </iframe>
+  </div>
+
+  <script>
+    function findLocation() {
+      const location = document.getElementById("location").value;
+      if (location === "") {
+        alert("Please enter a location");
+        return;
+      }
+      const mapUrl = "https://www.google.com/maps?q=" + encodeURIComponent(location) + "&output=embed";
+      document.getElementById("mapFrame").src = mapUrl;
+    }
+  </script>
+  
+   
+  <h2>Our Location</h2>
+
+  <!-- Embedded Map -->
+  <div class="map">
+    <iframe
+      src="https://www.google.com/maps?q=Taj+Mahal,Agra&output=embed"
+      loading="lazy">
+    </iframe>
+  </div>
+
+  <!-- View Larger Map Button -->
+  <a 
+    href="https://www.google.com/maps?q=Taj+Mahal,Agra"
+    target="_blank">
+    View Larger Map
+  </a>
+
+</body>
+</html>
