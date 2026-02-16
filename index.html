@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌿 Advanced Leaf Disease Detection & Analysis</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+                <h1>🌿 LeafAnalyzer Pro</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#upload">Upload</a></li>
+                <li><a href="#results">Results</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+-tab="disease-details">Disease Details</button>
+                    <button class="tab-btn" data-tab="treatment">Treatment</button>
+                    <button class="tab-btn" data-tab="prevention">Prevention</button>
+                    <button class="tab-btn" data-tab="color-analysis">Color Analysis</button>
+                </div>
+
+                <!-- Disease Details Tab -->
+                <div class="tab-content active" id="disease-details">
+                    <h4>Disease Description</h4>
+                    <p id="diseaseDescription"></p>
+                </div>
+
+                <!-- Treatment Tab -->
+                <div class="tab-content" id="treatment">
+                    <h4>Recommended Treatment</h4>
+                    <p id="diseaseTreatment"></p>
+                </div>
+
+                <!-- Prevention Tab -->    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2>🌱 Advanced Leaf Disease Detection & Analysis</h2>
+            <p>Upload leaf photos and get complete analysis with dimensions, health status, and disease detection!</p>
+            <a href="#upload" class="cta-btn">Start Analysis</a>
+        </div>
+    </section>
+
+    <!-- Upload Section -->
+    <section id="upload" class="upload-section">
+        <div class="container">
+            <h2>📸 Upload Leaf Photo</h2>
+            <p class="section-subtitle">Upload clear photos of plant leaves for detailed analysis</p>
+
+            <div class="upload-container">
+                <!-- Drag & Drop Area -->
+                <div class="drag-drop-area" id="dragDropArea">
+                    <input type="file" id="leafImageInput" accept="image/*" style="display: none;">
+                    <div class="upload-content">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>Drag & Drop Your Leaf Photo</h3>
+                        <p>or</p>
+                        <button class="btn-browse" id="browseBtn" type="button">
+                            <i class="fas fa-folder-open"></i> Browse Files
+                        </button>
+                        <p class="file-info">JPG, PNG, GIF up to 10MB</p>
+                    </div>
+                </div>
+
+                <!-- Image Preview -->
+                <div class="preview-container" id="previewContainer" style="display: none;">
+                    <div class="preview-image-box">
+                        <img id="previewImage" alt="Leaf Preview">
+                        <button class="btn-remove-image" id="removeImageBtn" type="button">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <button class="btn-analyze" id="analyzeBtn" type="button">
+                        <i class="fas fa-microscope"></i> Analyze Leaf
+                    </button>
+                </div>
+            </div>
+
+            <!-- Loading Spinner -->
+            <div class="loading-spinner" id="loadingSpinner" style="display: none;">
+                <div class="spinner"></div>
+                <p>Analyzing leaf image...</p>
+                <div class="progress-bar" id="analysisProgress">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results" class="results-section" style="display: none;">
+        <div class="container">
+            <h2>📊 Leaf Analysis Results</h2>
+
+            <div class="results-wrapper">
+                <!-- Left Side: Image & Dimensions -->
+                <div class="image-info-box">
+                    <div class="result-image">
+                        <img id="resultImage" alt="Analyzed Leaf">
+                    </div>
+
+                    <!-- Leaf Dimensions -->
+                    <div class="dimensions-card">
+                        <h3><i class="fas fa-ruler-combined"></i> Leaf Dimensions</h3>
+                        <div class="dimension-item">
+                            <label>Width:</label>
+                            <span id="leafWidth">0</span> pixels
+                        </div>
+                        <div class="dimension-item">
+                            <label>Height:</label>
+                            <span id="leafHeight">0</span> pixels
+                        </div>
+                        <div class="dimension-item">
+                            <label>Aspect Ratio:</label>
+                            <span id="leafAspectRatio">0</span>
+                        </div>
+                        <div class="dimension-item">
+                            <label>Area:</label>
+                            <span id="leafArea">0</span> sq. pixels
+                        </div>
+                        <div class="dimension-item">
+                            <label>Image Quality:</label>
+                            <span id="imageQuality">Good</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side: Disease Analysis & Health Status -->
+                <div class="analysis-info-box">
+                    <!-- Health Status -->
+                    <div class="health-status-card">
+                        <h3><i class="fas fa-heart-pulse"></i> Leaf Health Status</h3>
+                        <div class="health-indicator" id="healthIndicator">
+                            <div class="health-meter">
+                                <div class="health-bar" id="healthBar"></div>
+                            </div>
+                            <div class="health-percentage" id="healthPercentage">0%</div>
+                        </div>
+                        <p class="health-text" id="healthText">Analyzing...</p>
+                    </div>
+
+                    <!-- Disease Detection -->
+                    <div class="disease-card">
+                        <h3><i class="fas fa-virus"></i> Disease Detection</h3>
+                        <div class="disease-result">
+                            <h2 id="diseaseName">Loading...</h2>
+                            <div class="confidence-meter">
+                                <label>Detection Confidence:</label>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="confidenceBar"></div>
+                                </div>
+                                <span id="confidencePercent">0%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Leaf Information -->
+                    <div class="leaf-info-card">
+                        <h3><i class="fas fa-info-circle"></i> Leaf Information</h3>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <label>Leaf Type:</label>
+                                <span id="leafType">Unknown</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Condition:</label>
+                                <span id="leafCondition">Unknown</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Color Dominant:</label>
+                                <span id="dominantColor">Unknown</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Texture:</label>
+                                <span id="leafTexture">Unknown</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Analysis Section -->
+            <div class="detailed-analysis">
+                <div class="analysis-tabs">
+                    <button class="tab-btn active" data
+                <div class="tab-content" id="prevention">
+                    <h4>Prevention Measures</h4>
+                    <p id="diseasePrevention"></p>
+                </div>
+
+                <!-- Color Analysis Tab -->
+                <div class="tab-content" id="color-analysis">
+                    <h4>Color Analysis Report</h4>
+                    <div class="color-stats" id="colorStats"></div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="btn-download-report" id="downloadReportBtn">
+                    <i class="fas fa-download"></i> Download Full Report
+                </button>
+                <button class="btn-print-report" id="printReportBtn">
+                    <i class="fas fa-print"></i> Print Report
+                </button>
+                <button class="btn-new-analysis" id="newAnalysisBtn">
+                    <i class="fas fa-plus"></i> New Analysis
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2>About LeafAnalyzer Pro</h2>
+            <div class="about-grid">
+                <div class="about-card">
+                    <i class="fas fa-image"></i>
+                    <h3>Photo Upload & Analysis</h3>
+                    <p>Upload leaf photos in any format for instant analysis</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-ruler-combined"></i>
+                    <h3>Dimension Calculation</h3>
+                    <p>Automatic width, height, and area measurement</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-virus-slash"></i>
+                    <h3>Disease Detection</h3>
+                    <p>AI-powered detection of 7+ diseases</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-file-pdf"></i>
+                    <h3>Reports & Download</h3>
+                    <p>Generate and download detailed analysis reports</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 LeafAnalyzer Pro | Advanced Leaf Disease Detection System</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
