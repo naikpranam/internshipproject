@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Loan Approval Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI, sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+flex-direction:column;
+align-items:center;
+background:linear-gradient(135deg,#667eea,#764ba2);
+color:white;
+padding:30px;
+}
+
+h1{
+margin-bottom:25px;
+font-size:32px;
+letter-spacing:1px;
+}
+
+.form-box{
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(10px);
+padding:25px;
+border-radius:15px;
+width:320px;
+box-shadow:0 8px 20px rgba(0,0,0,0.3);
+}
+
+input,select{
+width:100%;
+padding:10px;
+margin:8px 0;
+border:none;
+border-radius:8px;
+outline:none;
+font-size:14px;
+}
+
+button{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:8px;
+background:#00e676;
+color:black;
+font-weight:bold;
+font-size:15px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+background:#00c853;
+transform:scale(1.03);
+}
+
+table{
+width:85%;
+margin-top:35px;
+border-collapse:collapse;
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(10px);
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 8px 20px rgba(0,0,0,0.3);
+}
+
+th,td{
+padding:12px;
+text-align:center;
+}
+
+th{
+background:rgba(0,0,0,0.3);
+font-size:15px;
+}
+
+tr:nth-child(even){
+background:rgba(255,255,255,0.05);
+}
+
+.approved{
+color:#00ff9d;
+font-weight:bold;
+}
+
+.rejected{
+color:#ff4d6d;
+font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>🏦 Loan Approval Dashboard</h1>
+
+<div class="form-box">
+
+<input type="number" id="empId" placeholder="Employee ID">
+
+<select id="income">
+<option value="">Select Income</option>
+<option value="High">High</option>
+<option value="Low">Low</option>
+</select>
+
+<select id="credit">
+<option value="">Select Credit Score</option>
+<option value="Good">Good</option>
+<option value="Poor">Poor</option>
+</select>
+
+<select id="employment">
+<option value="">Select Employment</option>
+<option value="Employed">Employed</option>
+<option value="Unemployed">Unemployed</option>
+</select>
+
+<button onclick="checkLoan()">Check Loan Approval</button>
+
+</div>
+
+<table>
+
+<thead>
+<tr>
+<th>Employee ID</th>
+<th>Income</th>
+<th>Credit Score</th>
+<th>Employment</th>
+<th>Status</th>
+</tr>
+</thead>
+
+<tbody id="resultTable"></tbody>
+
+</table>
+
+<script>
+
+function checkLoan(){
+
+let id = document.getElementById("empId").value;
+let income = document.getElementById("income").value;
+let credit = document.getElementById("credit").value;
+let employment = document.getElementById("employment").value;
+
+if(id=="" || income=="" || credit=="" || employment==""){
+alert("Please fill all fields");
+return;
+}
+
+let status;
+
+if((income=="High" && credit=="Good" && employment=="Employed") ||
+   (income=="Low" && credit=="Good" && employment=="Employed")){
+status="<span class='approved'>Approved</span>";
+}else{
+status="<span class='rejected'>Rejected</span>";
+}
+
+let table=document.getElementById("resultTable");
+
+let row=`
+<tr>
+<td>${id}</td>
+<td>${income}</td>
+<td>${credit}</td>
+<td>${employment}</td>
+<td>${status}</td>
+</tr>
+`;
+
+table.innerHTML+=row;
+
+document.getElementById("empId").value="";
+document.getElementById("income").value="";
+document.getElementById("credit").value="";
+document.getElementById("employment").value="";
+
+}
+
+</script>
+
+</body>
+</html>
